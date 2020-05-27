@@ -3,30 +3,40 @@ html(lang='en')
   include common/head.pug
   +head("Doin some stuff")
   body
-    nav.navbar.navbar-expand.navbar-light.bg-light
-      a(href="/", aria-label="Bruh").navbar-brand.mr-0.mr-md-2
-        img(src="/images/bruh.png", width="36", height="36")
-      div.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item
-            a.nav-link(href="/") Home
-          li.nav-item
-            a.nav-link(href="/") Leads
-    h1= title
-    p Work in progress ☭
-    p #{title}
-    form(action="/" method="POST")
-      input(name="lead_email", type="email", placeholder="Enter your email address")
-      button(type="submit") Submit
-    if leads
-      h1 Leads
-      for lead in leads
-        p(id=lead.id) 
-          span #{lead.email}
-          | 
-          a(href="/lead/" + lead.id) Details
-          | 
-          button(onclick=`deleteLead('${lead.id}')`) Delete
+    header
+      include common/navbar.pug
+      +navbar()
+      .container
+        .row.align-items-center
+          .col-md-6.order-md1.text-center.text-md-left.pr-md-5
+            h1.mb-3 🌲🌲🌲🌲🌲
+            p.lead Hellooo,
+            p.lead.mb-4 Woooorldddd
+            form(action="/" method="POST")
+              .input-group.mb-3
+                input(name="lead_email", type="email", placeholder="Enter your email address").form-control
+                .input-group-append
+                  button(type="submit").btn.btn-primary Get Started
+      .row
+        .col-md-6
+          if leads
+            h1 Leads
+              table.table
+                thead
+                  tr
+                    th(scope="col") Email
+                    th(scope="col") Actions
+                    th(scope="col")
+                  tr
+                tbody
+                  for lead in leads
+                    tr(id=lead.id) 
+                      td
+                        span #{lead.email}
+                      td 
+                        a(href="/lead/" + lead.id) Details
+                      td 
+                        button(onclick=`deleteLead('${lead.id}')`).btn.btn-primary Delete
   include common/footer.pug
   +footer()
   script(src='/javascript/leads.js')
