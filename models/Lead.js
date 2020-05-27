@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
 
             validate: {
-                isEmail: true,
+                isEmail: {
+                    msg: "We cannot recognize that email"
+                }
             },
         },
     });

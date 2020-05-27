@@ -9,15 +9,15 @@ exports.submit_lead = function(req, res, next) {
   return models.Lead.create({
     email: req.body.lead_email
   }).then(lead => {
-    res.redirect('leads');
-  }).catch(err => {
-    res.send("<p>Email invalida</p>")
-  })
+    res.redirect('/leads');
+  }).catch(err => {  
+    res.render('landing', { error: err.toString().split(':')[2], title: 'Project Stream Italia' });
+  });
 }
 
 exports.show_leads = function(req, res, next) {
   models.Lead.findAll().then(leads => {
-    res.render('landing', { title: 'Project Stream Italia', leads: leads });
+    res.render('lead/leads', { title: 'Project Stream Italia', leads: leads });
 
   })
 }
@@ -28,7 +28,7 @@ exports.show_lead = function(req, res, next) {
       id : req.params.lead_id
     }
   }).then(lead => {
-    res.render('lead', { lead: lead});
+    res.render('lead/lead', { lead: lead});
   });
 }
 

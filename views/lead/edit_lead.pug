@@ -1,11 +1,20 @@
 doctype html
 html(lang='en')
-  include common/head.pug
+  include ../common/head.pug
   +head("Edit Lead")
   body
-    form(action="/lead/" + lead.id + "/edit" method="POST")
-      input(name="lead_email", type="email", 
-      placeholder="Enter your email address", value=lead.email)
-      button(type="submit") Save
-    include common/footer.pug
+    header
+      include ../common/navbar.pug
+      +navbar()
+      .container(style="padding-top: 20vh;")
+        .row.align-items-center
+          .col-md-6.order-md1.text-center.text-md-left.pr-md-5
+              h1.lead Edit Lead
+              form(action="/lead/" + lead.id + "/edit" method="POST")
+                .input-group.mb-3
+                  input(name="lead_email", type="email", 
+                  placeholder="Enter your email address", value=lead.email).form-control
+                  .input-group-append
+                    button(type="submit").btn.btn-primary Save
+    include ../common/footer.pug
     +footer()
