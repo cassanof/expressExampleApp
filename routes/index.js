@@ -2,7 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 let landing = require('../controllers/landing');
+let user = require('../controllers/user');
 
+
+//* User Login Stuff
+router.get('/login', user.show_login);
+router.get('/signup', user.show_signup);
+
+//* Lead stuff 👇🏽
 router.get('/', landing.get_landing);
 router.post('/', landing.submit_lead);
 router.get('/leads', landing.show_leads);
