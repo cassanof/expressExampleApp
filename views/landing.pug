@@ -1,16 +1,32 @@
-extends layout
-
-block content
-  h1= title
-  p Work in progress ☭
-  p #{title}
-  form(action="/" method="POST")
-    input(name="lead_email", type="email", placeholder="Enter your email address")
-    button(type="submit") Submit
-  if leads
-    h1 Leads
-    for lead in leads
-      p 
-        span #{lead.email}
-        | 
-        a(href="/lead/" + lead.id) Details
+doctype html
+html(lang='en')
+  include common/head.pug
+  +head("Doin some stuff")
+  body
+    nav.navbar.navbar-expand.navbar-light.bg-light
+      a(href="/", aria-label="Bruh").navbar-brand.mr-0.mr-md-2
+        img(src="/images/bruh.png", width="36", height="36")
+      div.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item
+            a.nav-link(href="/") Home
+          li.nav-item
+            a.nav-link(href="/") Leads
+    h1= title
+    p Work in progress ☭
+    p #{title}
+    form(action="/" method="POST")
+      input(name="lead_email", type="email", placeholder="Enter your email address")
+      button(type="submit") Submit
+    if leads
+      h1 Leads
+      for lead in leads
+        p(id=lead.id) 
+          span #{lead.email}
+          | 
+          a(href="/lead/" + lead.id) Details
+          | 
+          button(onclick=`deleteLead('${lead.id}')`) Delete
+  include common/footer.pug
+  +footer()
+  script(src='/javascript/leads.js')
