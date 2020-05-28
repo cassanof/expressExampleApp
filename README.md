@@ -6,4 +6,4 @@
 - Bootstrap
 - jQuery
 - Passport.js
-
+- Eslint for the syntax enforcing
