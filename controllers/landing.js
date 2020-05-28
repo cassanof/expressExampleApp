@@ -1,11 +1,11 @@
-const models = require('../models')
+const models = require('../models');
 
 exports.get_landing = function(req, res, next) {
   res.render('landing', { title: 'Project Stream Italia' });
-}
+};
 
 exports.submit_lead = function(req, res, next) {
-  console.log("lead email: ", req.body.lead_email)
+  console.log("lead email: ", req.body.lead_email);
   return models.Lead.create({
     email: req.body.lead_email
   }).then(lead => {
@@ -13,14 +13,14 @@ exports.submit_lead = function(req, res, next) {
   }).catch(err => {  
     res.render('landing', { error: err.toString().split(':')[2], title: 'Project Stream Italia' });
   });
-}
+};
 
 exports.show_leads = function(req, res, next) {
   models.Lead.findAll().then(leads => {
     res.render('lead/leads', { title: 'Project Stream Italia', leads: leads });
 
-  })
-}
+  });
+};
 
 exports.show_lead = function(req, res, next) {
   return models.Lead.findOne({
@@ -30,7 +30,7 @@ exports.show_lead = function(req, res, next) {
   }).then(lead => {
     res.render('lead/lead', { lead: lead});
   });
-}
+};
 
 exports.show_edit_lead = function(req, res, next) {
   return models.Lead.findOne({
@@ -40,7 +40,7 @@ exports.show_edit_lead = function(req, res, next) {
   }).then(lead => {
     res.render('lead/edit_lead', { lead: lead});
   });
-}
+};
 
 exports.edit_lead = function(req, res, next) {
   return models.Lead.update({
@@ -51,8 +51,8 @@ exports.edit_lead = function(req, res, next) {
     }
   }).then(result => {
     res.redirect('/lead/' + req.params.lead_id);
-  })
-}
+  });
+};
 
 exports.delete_lead = function(req, res, next) {
   return models.Lead.destroy({
@@ -61,8 +61,8 @@ exports.delete_lead = function(req, res, next) {
     }
   }).then(result => {
     res.redirect('/leads');
-  })
-}
+  });
+};
 
 exports.delete_lead_json = function(req, res, next) {
   return models.Lead.destroy({
@@ -70,6 +70,6 @@ exports.delete_lead_json = function(req, res, next) {
       id: req.params.lead_id
     }
   }).then(result => {
-    res.send({ msg: "Success"})
-  })
-}
+    res.send({ msg: "Success"});
+  });
+};

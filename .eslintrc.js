@@ -17,6 +17,7 @@ module.exports = {
     "ecmaVersion": 11
   },
   "rules": {
+    "semi": ["warn", "always"],
     "indent": ["warn", 2],
     "no-unused-vars": "off"
   }

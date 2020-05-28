@@ -7,11 +7,11 @@ function deleteLead(leadId) {
     data: JSON.stringify({leadId}),
     type: 'POST',
     success: ((res) => {
-      console.log("Result: ", res)
+      console.log("Result: ", res);
       $("#"+leadId).remove();
     }),
     error: ((error) => {
       console.log("Error:", error);
     })
-  })
+  });
 }

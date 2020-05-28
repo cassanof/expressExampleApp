@@ -8,6 +8,8 @@ let user = require('../controllers/user');
 //* User Login Stuff 👇
 router.get('/login', user.show_login);
 router.get('/signup', user.show_signup);
+router.post('/login', user.login);
+router.post('/signup', user.signup);
 
 //* Lead stuff 👇
 router.get('/', landing.get_landing);
