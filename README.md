@@ -6,4 +6,5 @@
 - Bootstrap
 - jQuery
 - Passport.js
+- Bcrypt for password validation
 - Eslint for the syntax enforcing
