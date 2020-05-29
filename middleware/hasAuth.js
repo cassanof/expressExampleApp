@@ -5,6 +5,11 @@ exports.isLoggedIn = function(req, res, next) {
     // console.log(req.user); //for debugging
     next();
   } else {
-    next(createError(404, "Page does not exist."));
+    next(createError(404, "Not Found"));
   }
+};
+
+exports.hasAuth = function(req, res, next) {
+  if (req.user && req.user.is_admin == true) next();
+  else next(createError(404, "Not Found"));
 };
