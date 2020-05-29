@@ -1,7 +1,7 @@
 const models = require('../models');
 
 exports.get_landing = function(req, res, next) {
-  res.render('landing', { title: 'Project Stream Italia', user: req.user });
+  res.render('landing', { title: 'Express App', user: req.user });
 };
 
 exports.submit_lead = function(req, res, next) {
@@ -11,13 +11,13 @@ exports.submit_lead = function(req, res, next) {
   }).then(lead => {
     res.redirect('/leads');
   }).catch(err => {  
-    res.render('landing', { error: err.toString().split(':')[2], title: 'Project Stream Italia' });
+    res.render('landing', { error: err.toString().split(':')[2], title: 'Express App', user: req.user });
   });
 };
 
 exports.show_leads = function(req, res, next) {
   models.Lead.findAll().then(leads => {
-    res.render('lead/leads', { title: 'Project Stream Italia', leads: leads });
+    res.render('lead/leads', { title: 'Express App', leads: leads , user: req.user});
 
   });
 };
@@ -28,7 +28,7 @@ exports.show_lead = function(req, res, next) {
       id : req.params.lead_id
     }
   }).then(lead => {
-    res.render('lead/lead', { lead: lead});
+    res.render('lead/lead', { lead: lead, user: req.user});
   });
 };
 
@@ -38,7 +38,7 @@ exports.show_edit_lead = function(req, res, next) {
       id : req.params.lead_id
     }
   }).then(lead => {
-    res.render('lead/edit_lead', { lead: lead});
+    res.render('lead/edit_lead', { lead: lead, user: req.user});
   });
 };
 

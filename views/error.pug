@@ -1,9 +1,12 @@
 doctype html
 html
-  head
-    title error
-    link(rel='stylesheet', href='/stylesheets/style.css')
+  include common/head.pug
+  +head("Error")
   body
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+    header
+      .container
+        .row
+          .col-md-12
+            h1(style="text-align: center; padding-top: 10vh;")= message
+            h2.text-danger(style="text-align: center; padding-bottom: 10vh;")= error.status
+            pre.text-danger #{error.stack}
