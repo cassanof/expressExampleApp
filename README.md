@@ -1,4 +1,4 @@
-# Federico Cassano - expressFirstApp
+# Federico Cassano - An example of a Express.js application
 # Frameworks and libraries used till now:
 - Node.js
 - Express.js with Pug templating
